@@ -1,0 +1,66 @@
+# ignore two folders: build/ and devel/
+/build/
+/logs/
+/devel/
+/src/sim/subt_cave_sim/models/
+*/meshes/
+*.bag
+.vscode/
+.catkin_tools/
+.idea/
+*.pcd
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Eclipse
+.cproject
+.project
+/Debug/
+.settings
+
+# Python (for lint)
+*.pyc
+
+# Temporary files
+*~
+
+# Mac 
+.DS_Store
+
+# Mesh results
+mesh_results
+
+# Tools
+autolintc
+
+# Documentation
+docs/_build
+docs/doxyoutput
+docs/api
