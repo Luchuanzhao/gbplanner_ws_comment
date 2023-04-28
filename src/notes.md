@@ -1,0 +1,8 @@
+- rmf_sim.launch文件
+  - 加载参数配置文件：gbplanner	pci_file	voxblox	map_config	world_file
+  - 发布静态坐标变换：世界坐标系与导航坐标系，机器人坐标系与传感器坐标系
+  - 加载gazebo世界
+  - 限制话题发布消息的频率
+  - 加载机器人模型和控制器lee_position_controller
+  - 加载GBPlanner节点
+  - Planner and Control Interface（pci）

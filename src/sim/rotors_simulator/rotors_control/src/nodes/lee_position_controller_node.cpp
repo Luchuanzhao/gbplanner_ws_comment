@@ -51,7 +51,7 @@ LeePositionControllerNode::LeePositionControllerNode(
                                   true, false);
 }
 
-LeePositionControllerNode::~LeePositionControllerNode() { }
+LeePositionControllerNode::~LeePositionControllerNode() = default;
 
 void LeePositionControllerNode::InitializeParams() {
 

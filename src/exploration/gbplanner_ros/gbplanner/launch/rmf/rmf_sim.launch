@@ -13,7 +13,7 @@
   <arg name="voxblox_config_file" default="$(find gbplanner)/config/$(arg robot_name)/voxblox_sim_config.yaml"/>
   <arg name="map_config_file" default="$(arg voxblox_config_file)"/>
   <!-- <arg name="world_file" default="$(find planner_gazebo_sim)/worlds/darpa_cave_01.world"/> -->
-  <arg name="world_file" default="$(find planner_gazebo_sim)/worlds/my_explore.world"/>
+  <arg name="world_file" default="$(find planner_gazebo_sim)/worlds/heap_wall.world"/>
 
   <!-- Static TF -->
   <node pkg="tf" type="static_transform_publisher" name="tf_53" args="0 0 0 0 0 0 world navigation 100" />
@@ -25,7 +25,7 @@
   <node pkg="tf" type="static_transform_publisher" name="tf_5" args="0 0 0.05 0.0 0.0 0.0 $(arg robot_name)/base_link $(arg robot_name)/$(arg robot_name)/velodyne 10" />
 
   <!-- ROS Gazebo  -->
-  <env name="GAZEBO_MODEL_PATH" value="${GAZEBO_MODEL_PATH}:$(find planner_gazebo_sim)/models:$(find subt_cave_sim)/models"/>
+  <env name="GAZEBO_MODEL_PATH" value="$(find subt_cave_sim)/models:${GAZEBO_MODEL_PATH}:$(find planner_gazebo_sim)/models"/>
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
     <arg name="world_name" value="$(arg world_file)" />
     <arg name="gui" value="$(arg gazebo_gui_en)" />
@@ -39,7 +39,7 @@
     <node name="img_throttler" type="throttle" pkg="topic_tools" args="messages vi_sensor/camera_depth/depth/points 5 vi_sensor/camera_depth/depth/points_throttled" />
     <node name="odo_throttler" type="throttle" pkg="topic_tools" args="messages ground_truth/odometry 100 ground_truth/odometry_throttled" />
 
-    <!-- MAV launch -->
+    <!-- MAV launch, Spwan the model of MAV-->
     <include file="$(find rotors_gazebo)/launch/spawn_mav.launch">
       <arg name="mav_name" value="$(arg robot_name)" />
       <arg name="model" value="$(find rotors_description)/urdf/rmf_obelix.gazebo" />
@@ -59,6 +59,7 @@
 
   <arg name="odometry_topic" default="$(arg robot_name)/ground_truth/odometry_throttled"/>
   <node name="pose_throttler" type="throttle" pkg="topic_tools" args="messages $(arg robot_name)/ground_truth/pose_with_covariance 10 /msf_core/pose" />
+  
   <!-- Graph based planning -->
   <node pkg="gbplanner" type="gbplanner_node" name="gbplanner_node" output="screen" launch-prefix="$(arg launch_prefix)">
     <remap from="odometry" to="$(arg odometry_topic)" />
