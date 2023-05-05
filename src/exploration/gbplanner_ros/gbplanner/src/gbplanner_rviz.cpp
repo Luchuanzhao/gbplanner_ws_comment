@@ -2250,7 +2250,8 @@ void Visualization::visualizeRobotStateHistory(
   state_marker.id = 0;
   state_marker.ns = "state";
   state_marker.action = visualization_msgs::Marker::ADD;
-  state_marker.type = visualization_msgs::Marker::SPHERE_LIST;
+  // state_marker.type = visualization_msgs::Marker::SPHERE_LIST;
+  state_marker.type = visualization_msgs::Marker::LINE_STRIP;
   state_marker.scale.x = 0.2;
   state_marker.scale.y = 0.2;
   state_marker.scale.z = 0.2;

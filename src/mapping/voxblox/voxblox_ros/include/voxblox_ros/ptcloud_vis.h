@@ -63,6 +63,8 @@ void createColorPointcloudFromLayer(
 
   // Cache layer settings.
   size_t vps = layer.voxels_per_side();
+  // std::cout << vps<<std::endl;
+  // size_t vps = 24;
   size_t num_voxels_per_block = vps * vps * vps;
 
   // Temp variables.
